@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNDERSTANDR</title>
-    <link rel="icon" type="image/png" href="/image/logo.png">
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/ec4899/ffffff?text=U">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
-        #text-input::placeholder {
+        #text-input::placeholder, #word-input::placeholder, #sentence-input::placeholder {
             color: #9ca3af;
         }
         @keyframes fadeIn {
@@ -53,36 +53,36 @@
 
                 <!-- Control Panel -->
                 <div class="lg:col-span-1">
-                     <h2 class="block text-lg font-semibold text-gray-800 mb-3">Choose an Analysis</h2>
-                     <div class="flex flex-col space-y-4">
-                        <select id="task-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
-                            <option value="mainIdea">Find Main Idea</option>
-                            <option value="summary">Summarize Text</option>
-                            <option value="inference">Make an Inference</option>
-                            <option value="tone">Find the Tone</option>
-                            <option value="purpose">Find the Purpose</option>
-                            <option value="genre">Identify the Genre</option>
-                            <option value="wordMeaning">Explain a Word</option>
-                            <option value="restateSentence">Restate a Sentence</option>
-                        </select>
+                      <h2 class="block text-lg font-semibold text-gray-800 mb-3">Choose an Analysis</h2>
+                      <div class="flex flex-col space-y-4">
+                          <select id="task-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
+                              <option value="mainIdea">Find Main Idea</option>
+                              <option value="summary">Summarize Text</option>
+                              <option value="inference">Make an Inference</option>
+                              <option value="tone">Find the Tone</option>
+                              <option value="purpose">Find the Purpose</option>
+                              <option value="genre">Identify the Genre</option>
+                              <option value="wordMeaning">Explain a Word</option>
+                              <option value="restateSentence">Restate a Sentence</option>
+                          </select>
 
-                        <div id="conditional-inputs-container" class="space-y-4">
-                            <!-- Input for Word Meaning -->
-                            <div id="word-input-container" class="hidden conditional-input">
-                                <label for="word-input" class="block text-sm font-medium text-gray-600 mb-1">Word to explain:</label>
-                                <input type="text" id="word-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="e.g., photosynthesis">
-                            </div>
-                            <!-- Input for Restate Sentence -->
-                             <div id="sentence-input-container" class="hidden conditional-input">
-                                <label for="sentence-input" class="block text-sm font-medium text-gray-600 mb-1">Sentence to restate:</label>
-                                <textarea id="sentence-input" rows="3" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Copy and paste a sentence from the text..."></textarea>
-                            </div>
-                        </div>
+                          <div id="conditional-inputs-container" class="space-y-4">
+                              <!-- Input for Word Meaning -->
+                              <div id="word-input-container" class="hidden conditional-input">
+                                  <label for="word-input" class="block text-sm font-medium text-gray-600 mb-1">Word to explain:</label>
+                                  <input type="text" id="word-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="e.g., photosynthesis">
+                              </div>
+                              <!-- Input for Restate Sentence -->
+                                <div id="sentence-input-container" class="hidden conditional-input">
+                                  <label for="sentence-input" class="block text-sm font-medium text-gray-600 mb-1">Sentence to restate:</label>
+                                  <textarea id="sentence-input" rows="3" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Copy and paste a sentence from the text..."></textarea>
+                              </div>
+                          </div>
 
-                         <button id="analyze-btn" class="w-full bg-rose-500 text-white font-semibold py-3 px-5 rounded-lg hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-rose-300 disabled:cursor-not-allowed">
-                             Analyze Text
-                         </button>
-                     </div>
+                           <button id="analyze-btn" class="w-full bg-rose-500 text-white font-semibold py-3 px-5 rounded-lg hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-rose-300 disabled:cursor-not-allowed">
+                               Analyze Text
+                           </button>
+                      </div>
                 </div>
             </div>
         </div>
@@ -127,20 +127,16 @@
                 restateTypeWeights[type.id] = 10; // Equal, high chance for all
             });
             restateUsageHistory = [];
-             console.log("Weights reset:", restateTypeWeights);
         }
 
         function updateRestateWeights(usedTypeId) {
-            // Add to history
             restateUsageHistory.push(usedTypeId);
 
-            // Reset if all have been used
             if (restateUsageHistory.length >= restateTypes.length) {
                 initializeRestateWeights();
                 return;
             }
 
-            // Update weights based on history
             const UNUSED_WEIGHT = 10;
             const BASE_USED_WEIGHT = 1;
             const historyReversed = [...restateUsageHistory].reverse();
@@ -150,11 +146,9 @@
                 if (historyIndex === -1) { // Unused
                     restateTypeWeights[type.id] = UNUSED_WEIGHT;
                 } else { // Used
-                    // Most recent (index 0) gets lowest weight, older ones get progressively higher
                     restateTypeWeights[type.id] = BASE_USED_WEIGHT + (2 * historyIndex);
                 }
             });
-            console.log("Weights updated:", restateTypeWeights, "History:", restateUsageHistory);
         }
 
         function selectRestateType() {
