@@ -8,7 +8,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Link to the external CSS file -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        /* Embedding styles directly as styles.css is not provided */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .main-container-shadow {
+            box-shadow: 0 10px 25px rgba(211, 150, 160, 0.1), 0 5px 10px rgba(0, 0, 0, 0.04);
+        }
+        .result-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-orange-100 via-rose-100 to-violet-200 min-h-screen">
     <div class="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
@@ -16,7 +32,7 @@
         <!-- Header -->
         <header class="text-center mb-10">
             <div class="inline-block border-gray-300 p-2 rounded-full mb-4 shadow-lg">
-                <img src="https://avatars.githubusercontent.com/u/223221601?s=96&v=4" alt="readingbetweenthelines logo" class="w-16 h-16 rounded-full">
+                <img src="https://avatars.githubusercontent.com/u/223221601?s=96&v=4" alt="readingbetweenthelines logo" class="w-16 h-16 rounded-full" onerror="this.onerror=null; this.src='https://placehold.co/96x96/F9A8D4/1F2937?text=U';">
             </div>
             <h1 class="text-4xl font-bold text-gray-800">UNDERSTANDR</h1>
             <p class="text-gray-600 mt-2">Helps understand your text</p>
@@ -34,36 +50,37 @@
 
                 <!-- Control Panel -->
                 <div class="lg:col-span-1">
-                      <h2 class="block text-lg font-semibold text-gray-800 mb-3">Choose an Analysis</h2>
-                      <div class="flex flex-col space-y-4">
-                          <select id="task-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
-                              <option value="mainIdea">Find Main Idea</option>
-                              <option value="summary">Summarize Text</option>
-                              <option value="inference">Make an Inference</option>
-                              <option value="tone">Find the Tone</option>
-                              <option value="purpose">Find the Purpose</option>
-                              <option value="genre">Identify the Genre</option>
-                              <option value="wordMeaning">Explain a Word</option>
-                              <option value="restateSentence">Restate a Sentence</option>
-                          </select>
+                        <h2 class="block text-lg font-semibold text-gray-800 mb-3">Choose an Analysis</h2>
+                        <div class="flex flex-col space-y-4">
+                            <select id="task-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
+                                <option value="mainIdea">Find Main Idea</option>
+                                <option value="summary">Summarize Text</option>
+                                <option value="inference">Make an Inference</option>
+                                <option value="tone">Find the Tone</option>
+                                <option value="purpose">Find the Purpose</option>
+                                <option value="genre">Identify the Genre</option>
+                                <option value="wordMeaning">Explain a Word</option>
+                                <option value="restateSentence">Restate a Sentence</option>
+                            </select>
 
-                          <div id="conditional-inputs-container" class="space-y-4">
-                              <!-- Input for Word Meaning -->
-                              <div id="word-input-container" class="hidden conditional-input">
-                                  <label for="word-input" class="block text-sm font-medium text-gray-600 mb-1">Word to explain:</label>
-                                  <input type="text" id="word-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="e.g., photosynthesis">
-                              </div>
-                              <!-- Input for Restate Sentence -->
+                            <div id="conditional-inputs-container" class="space-y-4">
+                                <!-- Input for Word Meaning -->
+                                <div id="word-input-container" class="hidden conditional-input">
+                                    <label for="word-input" class="block text-sm font-medium text-gray-600 mb-1">Word to explain:</label>
+                                    <input type="text" id="word-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="e.g., photosynthesis">
+                                </div>
+                                <!-- Input for Restate Sentence -->
                                 <div id="sentence-input-container" class="hidden conditional-input">
-                                  <label for="sentence-input" class="block text-sm font-medium text-gray-600 mb-1">Sentence to restate:</label>
-                                  <textarea id="sentence-input" rows="3" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Copy and paste a sentence from the text..."></textarea>
-                              </div>
-                          </div>
+                                    <label for="sentence-input" class="block text-sm font-medium text-gray-600 mb-1">Sentence to restate:</label>
+                                    <textarea id="sentence-input" rows="3" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Copy and paste a sentence from the text..."></textarea>
+                                </div>
+                                <!-- Rewrite Tone Input is now removed from here -->
+                            </div>
 
-                           <button id="analyze-btn" class="w-full bg-rose-500 text-white font-semibold py-3 px-5 rounded-lg hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-rose-300 disabled:cursor-not-allowed">
-                               Analyze Text
-                           </button>
-                      </div>
+                            <button id="analyze-btn" class="w-full bg-rose-500 text-white font-semibold py-3 px-5 rounded-lg hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-rose-300 disabled:cursor-not-allowed">
+                                Analyze Text
+                            </button>
+                        </div>
                 </div>
             </div>
         </div>
@@ -86,6 +103,10 @@
         const wordInput = document.getElementById('word-input');
         const sentenceInputContainer = document.getElementById('sentence-input-container');
         const sentenceInput = document.getElementById('sentence-input');
+
+        // Tone rewrite elements are no longer here
+        // const toneRewriteInputContainer = document.getElementById('tone-rewrite-input-container');
+        // const toneRewriteInput = document.getElementById('tone-rewrite-input');
 
         // State variables for inference cycling
         let inferenceList = [];
@@ -146,13 +167,15 @@
         }
         
         initializeRestateWeights(); // Initial setup
-        // --- END of new logic ---
+        // --- END of restating logic ---
 
         const systemPrompts = {
             mainIdea: "You are an expert reading comprehension assistant. Your task is to identify and state the main idea of the provided text. First, state the main idea in a single, clear, and concise sentence. Then, in a new paragraph, provide a brief explanation for why this is the main idea, citing specific phrases or sentences from the text as evidence. Provide the explanation in Indonesian.",
             inference: "You are a highly skilled critical thinking expert. Your task is to identify what is **implied** but **not explicitly stated** in the text. An inference is a logical conclusion based on evidence and reasoning; it is not a direct translation or summary. For each distinct inference you find, you MUST follow this exact format:\n\n[Quote the relevant sentence or phrase from the original text here. Keep it in English and enclose it in quotation marks.]\n\n**Inference:**\n[State your logical conclusion—the implied meaning—here in Indonesian.]\n\n**Explanation:**\n[Explain in Indonesian how the provided quote logically leads to the inferred conclusion. Describe the reasoning that connects the explicit text to the hidden meaning.]\n\nSeparate each complete inference block with '|||'. Do not add any other text, numbering, or bullet points.",
             summary: "You are an expert reading comprehension assistant. Your task is to create a concise summary of the provided text. The summary should capture the key points and be no more than three sentences long.",
             tone: "You are an expert literary analyst. Your task is to identify the tone of the provided text. First, state the primary tone in one or two words (e.g., 'Formal and Objective', 'Nostalgic and Melancholy'). Then, in a new paragraph, provide a brief explanation with specific examples from the text to support your analysis. Provide the explanation in Indonesian.",
+            // UPDATED: Prompt for rewriting the tone
+            rewriteTone: "You are an expert writer and editor. Your task is to rewrite the provided text to match a specific target tone, while preserving the core meaning and information. You MUST follow this exact format:\n\n[Provide the fully rewritten text here.]\n\n|||\n\n**Penjelasan Perubahan:**\n[Provide a brief explanation in Indonesian, listing the key changes you made to achieve the new tone. When giving examples of word changes, keep the original and new words in English. For example: 'Mengubah kata \"original word\" menjadi \"new word\" untuk terdengar lebih formal.']",
             purpose: "You are an expert rhetorical analyst. Your task is to determine the primary purpose of the provided text. State whether the purpose is to inform, persuade, entertain, or something else. Then, in a new paragraph, explain your reasoning using evidence from the text. Provide the explanation in Indonesian.",
             genre: "You are an expert in literary and textual genres. Your task is to identify the most likely genre of the provided text (e.g., 'News Report', 'Science Fiction Short Story', 'Personal Essay', 'Technical Manual'). In a new paragraph, briefly justify your choice based on the text's style, content, and structure. Provide the justification in Indonesian.",
             wordMeaning: "Anda adalah asisten pemahaman bacaan dan leksikografer ahli. Tugas Anda adalah menganalisis makna sebuah kata dalam konteks teks yang diberikan. Harap format jawaban Anda dengan rapi dan jelas, seluruhnya dalam Bahasa Indonesia, menggunakan struktur berikut:\n\n**Definisi:**\n[Tulis definisi sederhana dari kata yang ditanyakan di sini.]\n\n**Metode Penjelasan dalam Teks:**\n[Identifikasi metode yang digunakan dalam teks untuk menjelaskan kata tersebut. Pilih salah satu dari: Definisi Langsung, Contoh, Sinonim, atau Kontras.]\n\n**Kutipan dari Teks:**\n[Kutip kalimat atau frasa dari teks asli yang memberikan konteks untuk makna kata tersebut.]"
@@ -166,13 +189,15 @@
             purpose: "Author's Purpose",
             genre: "Text Genre",
             wordMeaning: "Word Meaning Analysis"
-            // restateSentence title is now dynamic
+            // restateSentence and rewriteTone titles are now dynamic
         };
         
         taskSelect.addEventListener('change', () => {
             const selectedTask = taskSelect.value;
             wordInputContainer.classList.toggle('hidden', selectedTask !== 'wordMeaning');
             sentenceInputContainer.classList.toggle('hidden', selectedTask !== 'restateSentence');
+            // Tone rewrite input is no longer controlled here
+            // toneRewriteInputContainer.classList.toggle('hidden', selectedTask !== 'tone');
         });
 
         function setLoading(isLoading) {
@@ -198,14 +223,42 @@
             resultsContainer.innerHTML = '';
             const card = document.createElement('div');
             card.className = 'result-card bg-white p-6 rounded-2xl shadow-lg border border-gray-200';
-            let formattedContent = content.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+            // Format whitespace and basic markdown
+            let formattedContent = content
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>');
+            
+            // Format bold and italics
             formattedContent = formattedContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             formattedContent = formattedContent.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
             card.innerHTML = `
                 <h2 class="text-2xl font-bold text-rose-700 mb-4">${title}</h2>
                 <div class="text-gray-700 leading-relaxed space-y-4">${formattedContent}</div>
             `;
             resultsContainer.appendChild(card);
+
+            // NEW: If this is the Tone analysis, add the rewrite UI
+            if (title === "Author's Tone") {
+                const rewriteContainer = document.createElement('div');
+                rewriteContainer.className = 'mt-6 pt-6 border-t border-rose-200';
+                rewriteContainer.innerHTML = `
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Try a New Tone</h3>
+                    <label for="rewrite-tone-input" class="block text-sm font-medium text-gray-600 mb-1">Rewrite text in this tone:</label>
+                    <input type="text" id="rewrite-tone-input" class="w-full p-2 border border-gray-300 rounded-lg mb-3" placeholder="e.g., formal, casual, persuasive">
+                    <button id="rewrite-tone-btn" class="w-full bg-rose-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-rose-300">
+                        Rewrite Text
+                    </button>
+                    <div id="rewrite-result-container" class="mt-4"></div>
+                `;
+                card.appendChild(rewriteContainer);
+
+                // Add event listener for the new button *immediately* after creating it.
+                document.getElementById('rewrite-tone-btn').addEventListener('click', handleRewriteToneClick);
+            }
         }
         
         function displayError(message) {
@@ -220,7 +273,8 @@
         async function getAIAnalysis(text, task, additionalInput = "") {
             setLoading(true);
 
-            const apiKey = "AIzaSyCFx0aN9Z7UaZDbH1WxaT2ILQBSGO3uIAw";
+            // This is a placeholder API key.
+            const apiKey = "" // Leave this as-is; it will be populated by the environment.
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
             
             let systemPrompt, userPrompt = text, resultTitle;
@@ -231,19 +285,131 @@
                 userPrompt = `TEXT: """${text}"""\n\nSENTENCE TO RESTATE: "${additionalInput}"`;
                 resultTitle = `Restated Sentence (${selectedType.name})`;
                 updateRestateWeights(selectedType.id); // Update weights after selection
+            } else if (task === 'rewriteTone') { 
+                // This 'else if' block is now only used by the new rewrite button handler
+                systemPrompt = systemPrompts.rewriteTone;
+                userPrompt = `TARGET TONE: "${additionalInput}"\n\nTEXT TO REWRITE: """${text}"""`;
+                // Sanitize additionalInput for display
+                const safeTone = additionalInput.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                resultTitle = `Text Rewritten (Target Tone: ${safeTone})`;
             } else {
-                 systemPrompt = systemPrompts[task];
-                 resultTitle = resultTitles[task];
+                // Original logic for all other tasks
+                systemPrompt = systemPrompts[task];
+                resultTitle = resultTitles[task];
                 if (task === 'wordMeaning' && additionalInput) {
                     userPrompt = `TEXT: """${text}"""\n\nWORD TO ANALYZE: "${additionalInput}"`;
                 }
+                // Original 'tone' task is handled here (when additionalInput is empty)
             }
 
             const payload = {
                 contents: [{ parts: [{ text: userPrompt }] }],
                 systemInstruction: { parts: [{ text: systemPrompt }] },
                 generationConfig: {
-                    temperature: 0.0,
+                    temperature: 0.1, // Slightly higher temp for creative tasks like rewrite
+                    topP: 0.95,
+                }
+            };
+            
+            // Adjust temperature for non-creative tasks
+            if (task !== 'restateSentence' && task !== 'rewriteTone') {
+                payload.generationConfig.temperature = 0.0;
+            }
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText} (Status: ${response.status})`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const aiText = result.candidates[0].content?.parts?.[0]?.text;
+
+                    if (aiText) {
+                        if (task === 'inference') {
+                            inferenceList = aiText.split('|||').map(item => item.trim()).filter(item => item !== '');
+                            lastAnalyzedTextForInference = text;
+                            if (inferenceList.length > 0) {
+                                currentInferenceIndex = 0;
+                                const title = `Inference (${currentInferenceIndex + 1} of ${inferenceList.length})`;
+                                displayResult(title, inferenceList[currentInferenceIndex]);
+                            } else {
+                                displayResult("Inference", "The AI could not find any clear inferences in the provided text.");
+                            }
+                        } else {
+                            displayResult(resultTitle, aiText);
+                        }
+                    } else {
+                         // Handle cases where the model might return a safety block or no text
+                        if (result.candidates[0].finishReason === 'SAFETY') {
+                            throw new Error("The request was blocked for safety reasons. Please adjust your text.");
+                        } else {
+                            throw new Error("The AI returned an empty response. This might be due to the content.");
+                        }
+                    }
+                } else if (result.promptFeedback) {
+                    // Handle prompt-level feedback (e.g., safety blocking)
+                     throw new Error(`The request was blocked. Reason: ${result.promptFeedback.blockReason || 'Unknown'}. Please modify your input.`);
+                } else {
+                    throw new Error("The AI returned an invalid or incomplete response structure.");
+                }
+
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                // Check if we are in the rewrite flow
+                if (task === 'rewriteTone') {
+                    displayRewriteError(`I seem to be having trouble rewriting the text. Error: ${error.message}`);
+                } else {
+                    displayError(`I seem to be having trouble analyzing the text. Error: ${error.message}`);
+                }
+            } finally {
+                // Check if we are in the rewrite flow
+                if (task === 'rewriteTone') {
+                    setRewriteLoading(false);
+                } else {
+                    setLoading(false);
+                }
+            }
+        }
+
+        // NEW: Specific handler for the "Rewrite Text" button
+        async function handleRewriteToneClick() {
+            const targetToneInput = document.getElementById('rewrite-tone-input');
+            const rewriteBtn = document.getElementById('rewrite-tone-btn');
+            const originalText = textInput.value.trim();
+            const targetTone = targetToneInput.value.trim();
+
+            if (!targetTone) {
+                displayRewriteError("Please enter a target tone to rewrite the text.");
+                return;
+            }
+            if (!originalText) {
+                displayRewriteError("Cannot rewrite. The original text box is empty.");
+                return;
+            }
+
+            setRewriteLoading(true);
+
+            const apiKey = "AIzaSyCFx0aN9Z7UaZDbH1WxaT2ILQBSGO3uIAw" 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            const systemPrompt = systemPrompts.rewriteTone;
+            const userPrompt = `TARGET TONE: "${targetTone}"\n\nTEXT TO REWRITE: """${originalText}"""`;
+            const resultTitle = `Text Rewritten (Target Tone: ${targetTone.replace(/</g, '&lt;').replace(/>/g, '&gt;')})`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                generationConfig: {
+                    temperature: 0.1,
+                    topP: 0.95,
                 }
             };
 
@@ -259,36 +425,108 @@
                 }
                 
                 const result = await response.json();
-                const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text;
-
-                if (aiText) {
-                    if (task === 'inference') {
-                        inferenceList = aiText.split('|||').map(item => item.trim()).filter(item => item !== '');
-                        lastAnalyzedTextForInference = text;
-                        if (inferenceList.length > 0) {
-                            currentInferenceIndex = 0;
-                            const title = `Inference (${currentInferenceIndex + 1} of ${inferenceList.length})`;
-                            displayResult(title, inferenceList[currentInferenceIndex]);
-                        } else {
-                            displayResult("Inference", "The AI could not find any clear inferences in the provided text.");
-                        }
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const aiText = result.candidates[0].content?.parts?.[0]?.text;
+                    if (aiText) {
+                        displayRewriteResult(resultTitle, aiText);
                     } else {
-                        displayResult(resultTitle, aiText);
+                        if (result.candidates[0].finishReason === 'SAFETY') {
+                            throw new Error("The rewrite request was blocked for safety reasons.");
+                        } else {
+                            throw new Error("The AI returned an empty response for the rewrite.");
+                        }
                     }
+                } else if (result.promptFeedback) {
+                     throw new Error(`The rewrite request was blocked. Reason: ${result.promptFeedback.blockReason || 'Unknown'}.`);
                 } else {
-                    throw new Error("The AI returned an empty or invalid response.");
+                    throw new Error("The AI returned an invalid response structure for the rewrite.");
                 }
 
             } catch (error) {
-                console.error("Error calling Gemini API:", error);
-                displayError("I seem to be having trouble analyzing the text. Please try again in a moment.");
+                console.error("Error in handleRewriteToneClick:", error);
+                displayRewriteError(`Rewrite failed. Error: ${error.message}`);
             } finally {
-                setLoading(false);
+                setRewriteLoading(false);
             }
         }
 
+        // NEW: Helper functions for the rewrite UI
+        function setRewriteLoading(isLoading) {
+            const rewriteBtn = document.getElementById('rewrite-tone-btn');
+            const rewriteResultContainer = document.getElementById('rewrite-result-container');
+            
+            if (rewriteBtn) rewriteBtn.disabled = isLoading;
+            
+            if (isLoading) {
+                if (rewriteResultContainer) {
+                    rewriteResultContainer.innerHTML = `
+                        <div class="text-center p-3">
+                            <div class="flex justify-center items-center space-x-2">
+                                <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse" style="animation-delay: -0.3s;"></div>
+                                <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse" style="animation-delay: -0.15s;"></div>
+                                <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></div>
+                            </div>
+                            <p class="mt-2 text-gray-600 text-sm">Rewriting...</p>
+                        </div>
+                    `;
+                }
+            } else {
+                // Loading is handled by result/error display
+            }
+        }
+
+        function displayRewriteResult(title, content) {
+            const rewriteResultContainer = document.getElementById('rewrite-result-container');
+            if (!rewriteResultContainer) return;
+
+            const parts = content.split('|||');
+            const rewrittenText = parts[0] ? parts[0].trim() : "The AI did not provide the rewritten text.";
+            const explanation = parts[1] ? parts[1].trim() : "The AI did not provide an explanation.";
+
+            let formattedRewrittenText = rewrittenText
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
+            let formattedExplanation = explanation
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\n\n/g, '<br><br>')
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+            rewriteResultContainer.innerHTML = `
+                <div class="bg-gray-50 p-4 rounded-lg border">
+                    <h4 class="text-md font-semibold text-rose-700 mb-2">${title}</h4>
+                    <div class="text-gray-700 leading-relaxed space-y-4 text-sm mb-4">${formattedRewrittenText}</div>
+                    
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <!-- The explanation title (e.g., **Penjelasan Perubahan:**) is expected from the AI response -->
+                        <div class="text-gray-600 leading-relaxed space-y-2 text-sm">${formattedExplanation}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayRewriteError(message) {
+            const rewriteResultContainer = document.getElementById('rewrite-result-container');
+            if (!rewriteResultContainer) return;
+            rewriteResultContainer.innerHTML = `
+                <div class="bg-red-100 border border-red-200 text-red-700 p-3 rounded-lg text-sm" role="alert">
+                    <p>${message}</p>
+                </div>
+            `;
+        }
+
         analyzeBtn.addEventListener('click', () => {
-            const task = taskSelect.value;
+            let task = taskSelect.value; // Use 'let'
             const text = textInput.value.trim();
             
             if (!text) {
@@ -319,15 +557,29 @@
                 }
             } else if (task === 'restateSentence') {
                 additionalInput = sentenceInput.value.trim();
-                 if (!additionalInput) {
+                    if (!additionalInput) {
                     displayError("Please enter a sentence to restate.");
                     return;
                 }
+            } 
+            // This 'else if' is no longer needed here
+            /*
+            else if (task === 'tone') { // NEW: Check for rewrite task
+                additionalInput = toneRewriteInput.value.trim();
+                if (additionalInput) {
+                    // If user provided a rewrite tone, change the task ID
+                    task = 'rewriteTone';
+                }
+                // If additionalInput is empty, 'task' remains 'tone'
+                // and the original analysis will run.
             }
+            */
             
             getAIAnalysis(text, task, additionalInput);
         });
     </script>
 </body>
 </html>
+
+
 
