@@ -1,20 +1,20 @@
 body {
     font-family: 'Inter', sans-serif;
 }
-#text-input::placeholder, #word-input::placeholder, #sentence-input::placeholder {
-    color: #9ca3af;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+.main-container-shadow {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.06);
 }
 .result-card {
-    animation: fadeIn 0.5s ease-in-out forwards;
+    animation: fadeIn 0.5s ease-out;
 }
-.conditional-input {
-    transition: all 0.3s ease-in-out;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-.main-container-shadow {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
-
+.animate-pulse {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

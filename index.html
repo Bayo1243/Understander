@@ -8,71 +8,72 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Link to the external CSS file -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body class="bg-gradient-to-br from-orange-100 via-rose-100 to-violet-200 min-h-screen">
+<body class="bg-gradient-to-br from-blue-200 via-white to-blue-50 min-h-screen">
     <div class="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
 
-        <!-- Header -->
-        <header class="text-center mb-10">
+        
+<header class="text-center mb-10">
             <div class="inline-block border-gray-300 p-2 rounded-full mb-4 shadow-lg">
-                <img src="https://avatars.githubusercontent.com/u/223221601?s=96&v=4" alt="readingbetweenthelines logo" class="w-16 h-16 rounded-full">
+                <img src="https://avatars.githubusercontent.com/u/223221601?s=96&v=4" alt="readingbetweenthelines logo" class="w-16 h-16 rounded-full" onerror="this.src='https://placehold.co/96x96/FBE9E7/C53030?text=Logo'; this.onerror=null;">
             </div>
             <h1 class="text-4xl font-bold text-gray-800">UNDERSTANDR</h1>
             <p class="text-gray-600 mt-2">Helps understand your text</p>
         </header>
 
-        <!-- Main Content -->
-        <div class="bg-white/60 backdrop-blur-sm p-6 sm:p-8 rounded-2xl main-container-shadow border border-rose-200">
+        
+<div class="bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl main-container-shadow border border-blue-200">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 
-                <!-- Text Input Area -->
-                <div class="lg:col-span-2">
+                
+<div class="lg:col-span-2">
                     <label for="text-input" class="block text-lg font-semibold text-gray-800 mb-3">Paste your text here</label>
-                    <textarea id="text-input" rows="18" class="w-full p-4 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-rose-500 transition duration-300 bg-white/60" placeholder="Enter the article, paragraph, or story you want to analyze..."></textarea>
+                    <textarea id="text-input" rows="18" class="w-full p-4 border border-blue-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 bg-blue-50/50 placeholder-gray-500" placeholder="Enter the article, paragraph, or story you want to analyze..."></textarea>
                 </div>
 
-                <!-- Control Panel -->
-                <div class="lg:col-span-1">
-                      <h2 class="block text-lg font-semibold text-gray-800 mb-3">Choose an Analysis</h2>
-                      <div class="flex flex-col space-y-4">
-                          <select id="task-select" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500">
-                              <option value="mainIdea">Find Main Idea</option>
-                              <option value="summary">Summarize Text</option>
-                              <option value="inference">Make an Inference</option>
-                              <option value="tone">Find the Tone</option>
-                              <option value="purpose">Find the Purpose</option>
-                              <option value="genre">Identify the Genre</option>
-                              <option value="wordMeaning">Explain a Word</option>
-                              <option value="restateSentence">Restate a Sentence</option>
-                          </select>
+                
+<div class="lg:col-span-1">
+                        <h2 class="block text-lg font-semibold text-gray-800 mb-3">Choose an Analysis</h2>
+                        <div class="flex flex-col space-y-4">
+                            <select id="task-select" class="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-100 text-gray-800">
+                                <option value="mainIdea">Find Main Idea</option>
+                                <option value="summary">Summarize Text</option>
+                                <option value="inference">Make an Inference</option>
+                                <option value="tone">Find the Tone</option>
+                                <option value="purpose">Find the Purpose</option>
+                                <option value="genre">Identify the Genre</option>
+                                <option value="wordMeaning">Explain a Word</option>
+                                <option value="restateSentence">Restate a Sentence</option>
+                            </select>
 
-                          <div id="conditional-inputs-container" class="space-y-4">
-                              <!-- Input for Word Meaning -->
-                              <div id="word-input-container" class="hidden conditional-input">
-                                  <label for="word-input" class="block text-sm font-medium text-gray-600 mb-1">Word to explain:</label>
-                                  <input type="text" id="word-input" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="e.g., photosynthesis">
-                              </div>
-                              <!-- Input for Restate Sentence -->
-                                <div id="sentence-input-container" class="hidden conditional-input">
-                                  <label for="sentence-input" class="block text-sm font-medium text-gray-600 mb-1">Sentence to restate:</label>
-                                  <textarea id="sentence-input" rows="3" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Copy and paste a sentence from the text..."></textarea>
-                              </div>
-                          </div>
+                            
+<div id="conditional-inputs-container" class="space-y-4">
+                                
+<div id="word-input-container" class="hidden conditional-input">
+                                    <label for="word-input" class="block text-sm font-medium text-gray-600 mb-1">Word to explain (Optional):</label>
+                                    <input type="text" id="word-input" class="w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800 placeholder-gray-500" placeholder="Leave blank to find key vocabulary...">
+                                </div>
+                                
+<div id="sentence-input-container" class="hidden conditional-input">
+                                    <label for="sentence-input" class="block text-sm font-medium text-gray-600 mb-1">Sentence to restate:</label>
+                                    <textarea id="sentence-input" rows="3" class="w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800 placeholder-gray-500" placeholder="Copy and paste a sentence from the text..."></textarea>
+                                </div>
+                                
+</div>
 
-                           <button id="analyze-btn" class="w-full bg-rose-500 text-white font-semibold py-3 px-5 rounded-lg hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-rose-300 disabled:cursor-not-allowed">
-                               Analyze Text
-                           </button>
-                      </div>
+                            <button id="analyze-btn" class="w-full bg-blue-600 text-white font-semibold py-3 px-5 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-blue-800 disabled:cursor-not-allowed">
+                                Analyze Text
+                            </button>
+                        </div>
                 </div>
             </div>
         </div>
 
-        <!-- Results Area -->
-        <main id="results-container" class="mt-8">
-            <!-- Loading or error messages will appear here -->
-            <!-- AI analysis results will be appended here -->
-        </main>
+        
+<main id="results-container" class="mt-8">
+            
+</main>
 
     </div>
 
@@ -86,18 +87,26 @@
         const wordInput = document.getElementById('word-input');
         const sentenceInputContainer = document.getElementById('sentence-input-container');
         const sentenceInput = document.getElementById('sentence-input');
-
-        // State variables for inference cycling
+        
         let inferenceList = [];
         let currentInferenceIndex = 0;
         let lastAnalyzedTextForInference = "";
+        
+        let mainIdeaList = [];
+        let currentMainIdeaIndex = 0;
+        let lastAnalyzedTextForMainIdea = "";
 
-        // --- Logic for weighted random restating ---
+        let vocabList = [];
+        let currentVocabIndex = 0;
+        let lastAnalyzedTextForVocab = "";
+
+        let lastAnalyzedText = ""; 
+
         const restateTypes = [
             { id: 'passiveVoice', name: 'Using Passive Voice', prompt: "You are an expert linguist. Your task is to paraphrase a given sentence in English **using only the passive voice**. First, provide the rewritten sentence in English. Then, in a new paragraph labeled '*Penjelasan:*', explain in Indonesian exactly how the subject and object were swapped to create the passive voice." },
             { id: 'indirectSpeech', name: 'As Indirect Speech', prompt: "You are an expert linguist. Your task is to paraphrase a given sentence in English **as if it were being reported (indirect speech)**. First, provide the rewritten sentence in English. Then, in a new paragraph labeled '*Penjelasan:*', explain in Indonesian how the sentence was changed to reported speech, mentioning changes in tense or pronouns if applicable." },
             { id: 'swappingSynonyms', name: 'Swapping Synonyms', prompt: "You are an expert linguist. Your task is to paraphrase a given sentence in English **by swapping key words with appropriate synonyms**. First, provide the rewritten sentence in English. Then, in a new paragraph labeled '*Penjelasan:*', list in Indonesian the original words and the synonyms you used to replace them. For example: 'mengubah X menjadi Y, dan A menjadi B'." },
-            { id: 'changingStructure', name: 'Changing Structure', prompt: "You are an expert linguist. Your task is to paraphrase a given sentence in English **by significantly changing the clause order or overall sentence structure** while preserving the meaning. First, provide the rewritten sentence in English. Then, in a new paragraph labeled '*Penjelasan:*', describe in Indonesian how the sentence structure was altered, for example, by moving a subordinate clause to the beginning." }
+            { id: 'changingStructure', name: 'Changing Structure', prompt: "You are an expert linguist. Your task is to paraphrase a given sentence in English **by significantly changing the clause order or. overall sentence structure** while preserving the meaning. First, provide the rewritten sentence in English. Then, in a new paragraph labeled '*Penjelasan:*', describe in Indonesian how the sentence structure was altered, for example, by moving a subordinate clause to the beginning." }
         ];
 
         let restateUsageHistory = [];
@@ -105,7 +114,7 @@
 
         function initializeRestateWeights() {
             restateTypes.forEach(type => {
-                restateTypeWeights[type.id] = 10; // Equal, high chance for all
+                restateTypeWeights[type.id] = 10; 
             });
             restateUsageHistory = [];
         }
@@ -124,9 +133,9 @@
 
             restateTypes.forEach(type => {
                 const historyIndex = historyReversed.indexOf(type.id);
-                if (historyIndex === -1) { // Unused
+                if (historyIndex === -1) { 
                     restateTypeWeights[type.id] = UNUSED_WEIGHT;
-                } else { // Used
+                } else { 
                     restateTypeWeights[type.id] = BASE_USED_WEIGHT + (2 * historyIndex);
                 }
             });
@@ -142,31 +151,75 @@
                     return type;
                 }
             }
-            return restateTypes[0]; // Fallback
+            return restateTypes[0]; 
         }
         
-        initializeRestateWeights(); // Initial setup
-        // --- END of new logic ---
-
+        initializeRestateWeights(); 
+        
         const systemPrompts = {
-            mainIdea: "You are an expert reading comprehension assistant. Your task is to identify and state the main idea of the provided text. First, state the main idea in a single, clear, and concise sentence. Then, in a new paragraph, provide a brief explanation for why this is the main idea, citing specific phrases or sentences from the text as evidence. Provide the explanation in Indonesian.",
-            inference: "You are a highly skilled critical thinking expert. Your task is to identify what is **implied** but **not explicitly stated** in the text. An inference is a logical conclusion based on evidence and reasoning; it is not a direct translation or summary. For each distinct inference you find, you MUST follow this exact format:\n\n[Quote the relevant sentence or phrase from the original text here. Keep it in English and enclose it in quotation marks.]\n\n**Inference:**\n[State your logical conclusion—the implied meaning—here in Indonesian.]\n\n**Explanation:**\n[Explain in Indonesian how the provided quote logically leads to the inferred conclusion. Describe the reasoning that connects the explicit text to the hidden meaning.]\n\nSeparate each complete inference block with '|||'. Do not add any other text, numbering, or bullet points.",
+            mainIdea: `You are an expert reading comprehension assistant. Your task is to identify the topic and main idea of the provided text.
+First, identify the single **Topic** of the text (1-3 words, in English).
+Then, generate 3-4 *different* paraphrased versions of the main idea. Each version must be accurate, have a different sentence structure, and use different synonyms where possible.
+
+For each version, you MUST follow this exact format, using Markdown for spacing:
+
+**Topic:**
+[State the single topic here, in English]
+
+**Main Idea:**
+[State the paraphrased main idea in a single, clear, and concise **English** sentence.]
+
+**Penjelasan:**
+[Provide a **detailed** explanation in **Indonesian** for why this is the main idea. You **must** cite specific phrases or sentences from the text as evidence to support your analysis.]
+
+Separate each complete main idea block with '|||'. Do not add any other text, numbering, or bullet points.
+`,
+            inference: `You are a highly skilled critical thinking expert, a master of "reading between the lines". Your task is to find 3-4 *deep, logical inferences* from the provided text and present them as a JSON array.
+
+An inference is a logical conclusion based on evidence; it is **NOT** just a paraphrase of the quote. It is **NOT** something the text says directly. It is a logical leap.
+
+You MUST format your entire response as a single, valid JSON array. Do not include any text outside the array, including "json" or backticks.
+Each object in the array must have the following structure:
+{
+  "quote": "The single, specific sentence or phrase from the original text (in English) that acts as the evidence.",
+  "clue": "A short hint or 'clue' in **Indonesian** that points the user's attention to *why* the quote is important for making a logical leap. **If you mention specific words from the quote, keep those words in English and wrap them in single quotes.** (e.g., 'Perhatikan penggunaan kata 'suddenly' yang menyiratkan kejadian tak terduga.')",
+  "inference": "The final logical conclusion (the implied meaning) in **English**. **This MUST be a new insight that is *implied* by the quote, not just a restatement of it.**",
+  "explanation": "A detailed explanation in **Indonesian** that clearly connects the 'quote' and the 'clue' to the 'inference'. It must explain *how* you made the logical leap."
+}
+Ensure all strings are properly escaped within the JSON.
+`,
             summary: "You are an expert reading comprehension assistant. Your task is to create a concise summary of the provided text. The summary should capture the key points and be no more than three sentences long.",
             tone: "You are an expert literary analyst. Your task is to identify the tone of the provided text. First, state the primary tone in one or two words (e.g., 'Formal and Objective', 'Nostalgic and Melancholy'). Then, in a new paragraph, provide a brief explanation with specific examples from the text to support your analysis. Provide the explanation in Indonesian.",
             purpose: "You are an expert rhetorical analyst. Your task is to determine the primary purpose of the provided text. State whether the purpose is to inform, persuade, entertain, or something else. Then, in a new paragraph, explain your reasoning using evidence from the text. Provide the explanation in Indonesian.",
             genre: "You are an expert in literary and textual genres. Your task is to identify the most likely genre of the provided text (e.g., 'News Report', 'Science Fiction Short Story', 'Personal Essay', 'Technical Manual'). In a new paragraph, briefly justify your choice based on the text's style, content, and structure. Provide the justification in Indonesian.",
-            wordMeaning: "Anda adalah asisten pemahaman bacaan dan leksikografer ahli. Tugas Anda adalah menganalisis makna sebuah kata dalam konteks teks yang diberikan. Harap format jawaban Anda dengan rapi dan jelas, seluruhnya dalam Bahasa Indonesia, menggunakan struktur berikut:\n\n**Definisi:**\n[Tulis definisi sederhana dari kata yang ditanyakan di sini.]\n\n**Metode Penjelasan dalam Teks:**\n[Identifikasi metode yang digunakan dalam teks untuk menjelaskan kata tersebut. Pilih salah satu dari: Definisi Langsung, Contoh, Sinonim, atau Kontras.]\n\n**Kutipan dari Teks:**\n[Kutip kalimat atau frasa dari teks asli yang memberikan konteks untuk makna kata tersebut.]"
-            // restateSentence is now handled by the new logic
+            wordMeaning: `You are an expert lexicographer and reading comprehension assistant. Your task is to analyze the provided text based on the user's request.
+
+You MUST format your entire response as a single, valid JSON array. Do not include any text outside the array, including "json" or backticks.
+
+IF THE USER PROVIDES A SPECIFIC "WORD TO ANALYZE":
+You must analyze **only that word**. The JSON array will contain a **single object** with this structure:
+{
+  "word": "The specific word the user asked for (in English).",
+  "definition": "A simple, dictionary-style definition of the word in **English**.",
+  "quote": "The full sentence from the text where the word appears. You MUST bold the word using Markdown, like this: 'The quick **brown** fox...'.",
+  "explanation": "A detailed contextual explanation in **Indonesian** of what the word means *specifically within the context of that quote*."
+}
+
+IF THE "WORD TO ANALYZE" IS EMPTY:
+You must scan the text and find the 3-5 most important or difficult **Key Vocabulary** words.
+The JSON array will contain **multiple objects** (one for each word) using the *exact same structure* as above.
+
+Ensure all strings are properly escaped within the JSON.
+`,
         };
 
         const resultTitles = {
-            mainIdea: "Main Idea",
+            mainIdea: "Main Idea", 
             summary: "Summary",
             tone: "Author's Tone",
             purpose: "Author's Purpose",
             genre: "Text Genre",
-            wordMeaning: "Word Meaning Analysis"
-            // restateSentence title is now dynamic
+            wordMeaning: "Word Meaning Analysis" 
         };
         
         taskSelect.addEventListener('change', () => {
@@ -175,15 +228,16 @@
             sentenceInputContainer.classList.toggle('hidden', selectedTask !== 'restateSentence');
         });
 
+
         function setLoading(isLoading) {
             analyzeBtn.disabled = isLoading;
             if (isLoading) {
                 resultsContainer.innerHTML = `
-                    <div id="loading-indicator" class="text-center p-6 bg-white rounded-xl shadow-md border">
+                    <div id="loading-indicator" class="text-center p-6 bg-white rounded-xl shadow-md border-blue-200">
                         <div class="flex justify-center items-center space-x-2">
-                            <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse" style="animation-delay: -0.3s;"></div>
-                            <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse" style="animation-delay: -0.15s;"></div>
-                            <div class="w-2 h-2 bg-rose-500 rounded-full animate-pulse"></div>
+                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: -0.3s;"></div>
+                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: -0.15s;"></div>
+                            <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                         </div>
                         <p class="mt-3 text-gray-600 text-sm">Analyzing text...</p>
                     </div>
@@ -194,17 +248,206 @@
             }
         }
         
-        function displayResult(title, content) {
+        function displayResult(title, content, options = {}) {
             resultsContainer.innerHTML = '';
             const card = document.createElement('div');
-            card.className = 'result-card bg-white p-6 rounded-2xl shadow-lg border border-gray-200';
-            let formattedContent = content.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
-            formattedContent = formattedContent.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            formattedContent = formattedContent.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            card.className = 'result-card bg-white p-6 rounded-2xl shadow-lg border border-blue-200';
+            
+            let formattedContent = "";
+            let isFallback = options && options.isFallback; 
+
+            if ((title.startsWith("Key Vocabulary") || title === "Word Meaning Analysis") && typeof content === 'object' && content !== null && !isFallback) {
+                const formattedQuote = content.quote.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                formattedContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <strong class="block text-gray-800">Word:</strong>
+                            <p class="mt-1 text-xl font-semibold text-blue-700">${content.word}</p>
+                        </div>
+                        <div>
+                            <strong class="block text-gray-800">Definition:</strong>
+                            <p class="mt-1">${content.definition}</p>
+                        </div>
+                        <div>
+                            <strong class="block text-gray-800">Quote from Text:</strong>
+                            <p class="mt-1 italic">"${formattedQuote}"</p>
+                        </div>
+                        <div>
+                            <strong class="block text-gray-800">Contextual Explanation (Penjelasan Kontekstual):</strong>
+                            <p class="mt-1">${content.explanation}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            else if (title.startsWith("Inference") && typeof content === 'object' && content !== null && !isFallback) {
+                formattedContent = `
+                    <div class="space-y-4">
+                        <div>
+                            <strong class="block text-gray-800">Quote from Text:</strong>
+                            <p class="mt-1 italic">"${content.quote}"</p>
+                        </div>
+                        <div>
+                            <strong class="block text-gray-800">Clue (Petunjuk):</strong>
+                            <p class="mt-1">${content.clue}</p>
+                        </div>
+                        <button id="show-inference-btn" class="mt-2 bg-blue-100 text-blue-700 font-semibold py-2 px-4 rounded-lg hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                            Show Inference
+                        </button>
+                        <div id="inference-reveal" class="hidden space-y-4 mt-4 pt-4 border-t border-gray-200">
+                            <div>
+                                <strong class="block text-gray-800">Inference:</strong>
+                                <p class="mt-1 font-semibold text-blue-700">${content.inference}</p>
+                            </div>
+                            <div>
+                                <strong class="block text-gray-800">Explanation (Penjelasan):</strong>
+                                <p class="mt-1">${content.explanation}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                formattedContent = (typeof content === 'string' ? content : 'Error: Invalid content format')
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n/g, '<br>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>');
+            }
+            
             card.innerHTML = `
-                <h2 class="text-2xl font-bold text-rose-700 mb-4">${title}</h2>
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">${title}</h2>
                 <div class="text-gray-700 leading-relaxed space-y-4">${formattedContent}</div>
             `;
+            
+            const showInferenceBtn = card.querySelector('#show-inference-btn');
+            if (showInferenceBtn) {
+                showInferenceBtn.addEventListener('click', () => {
+                    const revealSection = card.querySelector('#inference-reveal');
+                    if (revealSection) {
+                        revealSection.classList.remove('hidden');
+                        showInferenceBtn.classList.add('hidden');
+                    }
+                });
+            }
+
+
+            if (title === "Author's Tone") {
+                const rewriteSection = document.createElement('div');
+                rewriteSection.className = 'mt-6 pt-6 border-t border-gray-200';
+                rewriteSection.innerHTML = `
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Rewrite Text in a New Tone</h3>
+                    <div class="space-y-3" id="rewrite-controls-container">
+                        <select id="card-tone-category-select" class="w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800">
+                            <option value="">-- Select Tone Category --</option>
+                            <option value="positive">Positive</option>
+                            <option value="negative">Negative</option>
+                            <option value="neutral">Neutral</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                        <select id="card-positive-tones-select" class="hidden w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800">
+                            <option value="Joyful">Joyful</option>
+                            <option value="Enthusiastic">Enthusiastic</option>
+                            <option value="Hopeful">Hopeful</option>
+                            <option value="Optimistic">Optimistic</option>
+                            <option value="Friendly">Friendly</option>
+                        </select>
+                        <select id="card-negative-tones-select" class="hidden w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800">
+                            <option value="Sad">Sad</option>
+                            <option value="Angry">Angry</option>
+                            <option value="Critical">Critical</option>
+                            <option value="Pessimistic">Pessimistic</option>
+                            <option value="Skeptical">Skeptical</option>
+                        </select>
+                        <select id="card-neutral-tones-select" class="hidden w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800">
+                            <option value="Formal">Formal</option>
+                            <option value="Objective">Objective</option>
+                            <option value="Informative">Informative</option>
+                            <option value="Analytical">Analytical</option>
+                            <option value="Neutral">Neutral</option>
+                        </select>
+                        <div id="card-custom-tone-input-container" class="hidden">
+                            <label for="card-tone-rewrite-input" class="block text-sm font-medium text-gray-600 mb-1">Enter custom tone:</label>
+                            <input type="text" id="card-tone-rewrite-input" class="w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800 placeholder-gray-500" placeholder="e.g., sarcastic, whimsical">
+                        </div>
+                        <button id="rewrite-tone-btn" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105">
+                            Rewrite Text
+                        </button>
+                    </div>
+                    <div id="rewrite-result-container" class="mt-4"></div>
+                `;
+                card.appendChild(rewriteSection);
+
+                const categorySelect = card.querySelector('#card-tone-category-select');
+                const positiveSelect = card.querySelector('#card-positive-tones-select');
+                const negativeSelect = card.querySelector('#card-negative-tones-select');
+                const neutralSelect = card.querySelector('#card-neutral-tones-select');
+                const customInput = card.querySelector('#card-custom-tone-input-container');
+                const rewriteBtn = card.querySelector('#rewrite-tone-btn');
+                const rewriteResultContainer = card.querySelector('#rewrite-result-container'); 
+
+                categorySelect.addEventListener('change', () => {
+                    const category = categorySelect.value;
+                    positiveSelect.classList.toggle('hidden', category !== 'positive');
+                    negativeSelect.classList.toggle('hidden', category !== 'negative');
+                    neutralSelect.classList.toggle('hidden', category !== 'neutral');
+                    customInput.classList.toggle('hidden', category !== 'custom');
+                });
+
+                rewriteBtn.addEventListener('click', async () => { 
+                    const category = categorySelect.value;
+                    let desiredTone = "";
+
+                    if (category === 'positive') desiredTone = positiveSelect.value;
+                    else if (category === 'negative') desiredTone = negativeSelect.value;
+                    else if (category === 'neutral') desiredTone = neutralSelect.value;
+                    else if (category === 'custom') desiredTone = card.querySelector('#card-tone-rewrite-input').value.trim();
+
+                    if (desiredTone) {
+                        rewriteResultContainer.innerHTML = `
+                            <div class="text-center p-4 border rounded-lg bg-blue-50">
+                                <div class="flex justify-center items-center space-x-2">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: -0.3s;"></div>
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: -0.15s;"></div>
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                                </div>
+                                <p class="mt-3 text-gray-600 text-sm">Rewriting text...</p>
+                            </div>
+                        `;
+                        rewriteBtn.disabled = true;
+
+                        const aiContent = await fetchToneRewrite(lastAnalyzedText, desiredTone);
+
+                        if (aiContent) {
+                            let formattedContent = aiContent
+                                .replace(/\n\n/g, '<br><br>')
+                                .replace(/\n/g, '<br>')
+                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                .replace(/\*(.*?)\*/g, '<em>$1</em>') 
+                                .replace(/\[ORIGINAL\](.*?)\[\/ORIGINAL\]/g, 
+                                    '<span class="block mt-2"><span class="font-medium text-red-700">Original:</span> <span class="bg-red-100 text-red-900 p-1 rounded font-mono">"$1"</span></span>')
+                                .replace(/\[MENJADI\](.*?)\[\/MENJADI\]/g, 
+                                    '<span class="block mb-2"><span class="font-medium text-green-700">Menjadi:</span> <span class="bg-green-100 text-green-900 p-1 rounded font-mono">"$1"</span></span>');
+                            
+                            rewriteResultContainer.innerHTML = `
+                                <h4 class="text-md font-semibold text-blue-600 mb-2">Rewritten Text (Tone: ${desiredTone})</h4>
+                                <div class="text-gray-700 leading-relaxed space-y-4 p-4 border rounded-lg bg-blue-50/50">
+                                    ${formattedContent}
+                                </div>
+                            `;
+                        } else {
+                            rewriteResultContainer.innerHTML = `
+                                <div class="bg-red-100 border border-red-200 text-red-700 p-3 rounded-lg" role="alert">
+                                    <p>Error rewriting text. Please try again.</p>
+                                </div>
+                            `;
+                        }
+                        rewriteBtn.disabled = false;
+                        
+                    } else {
+                        console.log("No rewrite tone selected.");
+                    }
+                });
+            }
+            
             resultsContainer.appendChild(card);
         }
         
@@ -217,10 +460,89 @@
             `;
         }
 
+        async function fetchToneRewrite(text, desiredTone) {
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const systemPrompt = `You are an expert creative writer and editor. Your task is to rewrite the provided text to match a new, specified tone.
+
+Please format your response exactly as follows, using Markdown:
+
+**Rewritten Text**
+[The full rewritten text in English goes here.]
+
+**Penjelasan Perubahan (Explanation of Changes)**
+[Provide an explanation in **Indonesian** describing *how* the tone was shifted (e.g., word choice, sentence structure).]
+
+**Perubahan Utama (Key Changes)**
+[List the most significant word or phrase changes. Use this exact format, replacing the brackets and text inside:]
+* [ORIGINAL]original phrase 1[/ORIGINAL]
+* [MENJADI]rewritten phrase 1[/MENJADI]
+* [ORIGINAL]original phrase 2[/ORIGINAL]
+* [MENJADI]rewritten phrase 2[/MENJADI]
+`;
+            const userPrompt = `ORIGINAL TEXT: """${text}"""\n\nTARGET TONE: "${desiredTone}"`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                generationConfig: {
+                    temperature: 0.0,
+                }
+            };
+
+            let response;
+            let retries = 0;
+            const maxRetries = 3;
+            let delay = 1000;
+
+            while (retries < maxRetries) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        break; 
+                    }
+                    if (response.status === 429 || response.status >= 500) {
+                        console.warn(`API call failed with status ${response.status}. Retrying in ${delay}ms...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2;
+                        retries++;
+                    } else {
+                        throw new Error(`API Error: ${response.statusText} (Status: ${response.status})`);
+                    }
+                } catch (error) {
+                    console.warn(`Network error during API call. Retrying in ${delay}ms...`, error);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                    retries++;
+                }
+            }
+
+            if (!response || !response.ok) {
+                console.error("Error calling Gemini API after retries:", response ? response.statusText : "No response");
+                return null; 
+            }
+
+            try {
+                const result = await response.json();
+                const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                return aiText || null; 
+            } catch (error) {
+                console.error("Error processing API response:", error);
+                return null; 
+            }
+        }
+        
         async function getAIAnalysis(text, task, additionalInput = "") {
             setLoading(true);
 
-            const apiKey = "AIzaSyCFx0aN9Z7UaZDbH1WxaT2ILQBSGO3uIAw";
+            const apiKey = "AIzaSyCFx0aN9Z7UaZDbH1WxaT2ILQBSGO3uIAw"; 
+            
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
             
             let systemPrompt, userPrompt = text, resultTitle;
@@ -230,13 +552,20 @@
                 systemPrompt = selectedType.prompt;
                 userPrompt = `TEXT: """${text}"""\n\nSENTENCE TO RESTATE: "${additionalInput}"`;
                 resultTitle = `Restated Sentence (${selectedType.name})`;
-                updateRestateWeights(selectedType.id); // Update weights after selection
+                updateRestateWeights(selectedType.id); 
+            
+            } else if (task === 'wordMeaning') {
+                systemPrompt = systemPrompts.wordMeaning;
+                if (additionalInput) {
+                    userPrompt = `TEXT: """${text}"""\n\nWORD TO ANALYZE: "${additionalInput}"`;
+                    resultTitle = "Word Meaning Analysis";
+                } else {
+                    userPrompt = `TEXT: """${text}"""\n\nWORD TO ANALYZE: ""`;
+                    resultTitle = "Key Vocabulary"; 
+                }
             } else {
                  systemPrompt = systemPrompts[task];
                  resultTitle = resultTitles[task];
-                if (task === 'wordMeaning' && additionalInput) {
-                    userPrompt = `TEXT: """${text}"""\n\nWORD TO ANALYZE: "${additionalInput}"`;
-                }
             }
 
             const payload = {
@@ -247,28 +576,119 @@
                 }
             };
 
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+            let response;
+            let retries = 0;
+            const maxRetries = 3;
+            let delay = 1000; 
 
-                if (!response.ok) {
-                    throw new Error(`API Error: ${response.statusText} (Status: ${response.status})`);
+            while (retries < maxRetries) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        break; 
+                    }
+
+                    if (response.status === 429 || response.status >= 500) {
+                        console.warn(`API call failed with status ${response.status}. Retrying in ${delay}ms...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; 
+                        retries++;
+                    } else {
+                        throw new Error(`API Error: ${response.statusText} (Status: ${response.status})`);
+                    }
+
+                } catch (error) {
+                    console.warn(`Network error during API call. Retrying in ${delay}ms...`, error);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                    retries++;
                 }
-                
+            }
+
+            if (!response || !response.ok) {
+                console.error("Error calling Gemini API after retries:", response ? response.statusText : "No response");
+                displayError("I seem to be having trouble analyzing the text after multiple attempts. Please try again in a moment.");
+                setLoading(false);
+                return;
+            }
+
+            try {
                 const result = await response.json();
                 const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text;
 
                 if (aiText) {
-                    if (task === 'inference') {
-                        inferenceList = aiText.split('|||').map(item => item.trim()).filter(item => item !== '');
+                    if (task === 'wordMeaning') {
+                        let parsedData = [];
+                        try {
+                            const jsonMatch = aiText.match(/\[\s*\{[\s\S]*\}\s*\]/);
+                            if (!jsonMatch) throw new Error("No JSON array found in AI response.");
+                            
+                            parsedData = JSON.parse(jsonMatch[0]);
+                            if (!Array.isArray(parsedData) || parsedData.length === 0) {
+                                throw new Error("Parsed JSON is not a valid array or is empty.");
+                            }
+                            if (!parsedData[0].word || !parsedData[0].definition || !parsedData[0].quote || !parsedData[0].explanation) {
+                                throw new Error("JSON items are missing required properties.");
+                            }
+                            
+                            vocabList = parsedData; 
+                            lastAnalyzedTextForVocab = text;
+                            currentVocabIndex = 0;
+                            
+                            let title;
+                            if (vocabList.length > 1) { 
+                                title = `Key Vocabulary (${currentVocabIndex + 1} of ${vocabList.length})`;
+                            } else { 
+                                title = "Word Meaning Analysis";
+                            }
+                            displayResult(title, vocabList[currentVocabIndex]);
+
+                        } catch (error) {
+                            console.error("Failed to parse vocab JSON:", error.message, aiText);
+                            displayError("The AI's response for vocabulary was not in the expected format.");
+                        }
+
+                    } else if (task === 'mainIdea') {
+                        mainIdeaList = aiText.split('|||').map(item => item.trim()).filter(item => item !== '');
+                        lastAnalyzedTextForMainIdea = text;
+                        if (mainIdeaList.length > 0) {
+                            currentMainIdeaIndex = 0;
+                            const title = `Main Idea`;
+                            displayResult(title, mainIdeaList[currentMainIdeaIndex]);
+                        } else {
+                            displayResult("Main Idea", "The AI could not find a main idea for the provided text.");
+                        }
+                    } else if (task === 'inference') {
+                        let parsedData = [];
+                        let fallbackUsed = false;
+                        try {
+                            const jsonMatch = aiText.match(/\[\s*\{[\s\S]*\}\s*\]/);
+                            if (!jsonMatch) throw new Error("No JSON array found in AI response.");
+                            
+                            parsedData = JSON.parse(jsonMatch[0]);
+                            if (!Array.isArray(parsedData) || parsedData.length === 0) {
+                                throw new Error("Parsed JSON is not a valid array or is empty.");
+                            }
+                            if (!parsedData[0].quote || !parsedData[0].clue || !parsedData[0].inference || !parsedData[0].explanation) {
+                                throw new Error("JSON items are missing required properties.");
+                            }
+                            inferenceList = parsedData; 
+                        } catch (error) {
+                            console.warn("Failed to parse inference JSON, using fallback:", error.message);
+                            inferenceList = aiText.split('|||').map(item => item.trim()).filter(item => item !== '');
+                            fallbackUsed = true;
+                        }
+
                         lastAnalyzedTextForInference = text;
                         if (inferenceList.length > 0) {
                             currentInferenceIndex = 0;
                             const title = `Inference (${currentInferenceIndex + 1} of ${inferenceList.length})`;
-                            displayResult(title, inferenceList[currentInferenceIndex]);
+                            displayResult(title, inferenceList[currentInferenceIndex], { isFallback: fallbackUsed });
                         } else {
                             displayResult("Inference", "The AI could not find any clear inferences in the provided text.");
                         }
@@ -278,51 +698,74 @@
                 } else {
                     throw new Error("The AI returned an empty or invalid response.");
                 }
-
             } catch (error) {
-                console.error("Error calling Gemini API:", error);
-                displayError("I seem to be having trouble analyzing the text. Please try again in a moment.");
+                console.error("Error processing API response:", error);
+                displayError("The AI's response was not in the expected format. Please try again.");
             } finally {
                 setLoading(false);
             }
         }
 
         analyzeBtn.addEventListener('click', () => {
-            const task = taskSelect.value;
+            let task = taskSelect.value;
             const text = textInput.value.trim();
+            lastAnalyzedText = text; 
             
             if (!text) {
                 displayError("Please paste some text into the box before choosing an analysis.");
                 return;
             }
-            
-            // Handle inference cycling
+
+            let additionalInput = ""; 
+
+            if (task === 'mainIdea' && text === lastAnalyzedTextForMainIdea && mainIdeaList.length > 0) {
+                currentMainIdeaIndex = (currentMainIdeaIndex + 1) % mainIdeaList.length;
+                const title = `Main Idea`;
+                displayResult(title, mainIdeaList[currentMainIdeaIndex]);
+                return; 
+            }
+
             if (task === 'inference' && text === lastAnalyzedTextForInference && inferenceList.length > 0) {
                 currentInferenceIndex = (currentInferenceIndex + 1) % inferenceList.length;
                 const title = `Inference (${currentInferenceIndex + 1} of ${inferenceList.length})`;
-                displayResult(title, inferenceList[currentInferenceIndex]);
-                return; // Skip new API call
+                
+                const item = inferenceList[currentInferenceIndex];
+                let isFallback = (typeof item === 'string');
+                
+                displayResult(title, item, { isFallback: isFallback });
+                return; 
             }
 
-            // Reset inference state if task changes or text changes
+            additionalInput = wordInput.value.trim(); 
+            if (task === 'wordMeaning' && additionalInput === "" && text === lastAnalyzedTextForVocab && vocabList.length > 0) {
+                currentVocabIndex = (currentVocabIndex + 1) % vocabList.length;
+                const title = `Key Vocabulary (${currentVocabIndex + 1} of ${vocabList.length})`;
+                displayResult(title, vocabList[currentVocabIndex]);
+                return; 
+            }
+
+
+            if (task !== 'mainIdea' || text !== lastAnalyzedTextForMainIdea) {
+                mainIdeaList = [];
+                currentMainIdeaIndex = 0;
+            }
             if (task !== 'inference' || text !== lastAnalyzedTextForInference) {
                 inferenceList = [];
                 currentInferenceIndex = 0;
             }
+            if (task !== 'wordMeaning' || text !== lastAnalyzedTextForVocab || additionalInput !== "") {
+                vocabList = [];
+                currentVocabIndex = 0;
+            }
 
-            let additionalInput = "";
-            if (task === 'wordMeaning') {
-                additionalInput = wordInput.value.trim();
-                if (!additionalInput) {
-                    displayError("Please enter a word to explain.");
-                    return;
-                }
-            } else if (task === 'restateSentence') {
+
+            if (task === 'restateSentence') {
                 additionalInput = sentenceInput.value.trim();
                  if (!additionalInput) {
-                    displayError("Please enter a sentengitce to restate.");
+                    displayError("Please enter a sentence to restate.");
                     return;
                 }
+            } else if (task === 'wordMeaning') {
             }
             
             getAIAnalysis(text, task, additionalInput);
@@ -330,4 +773,5 @@
     </script>
 </body>
 </html>
+
 
