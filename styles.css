@@ -1,4 +1,4 @@
- body {
+  body {
             font-family: 'Inter', sans-serif;
         }
         .main-container-shadow {
@@ -28,9 +28,8 @@
             cursor: pointer;
         }
         .tab-active {
-            color: #2f6ad8;
-            border-bottom-color: #2851a8;
-            transition: color grey 0.3s ease;
+            color: #2563EB;
+            border-bottom-color: #2563EB;
         }
         .tab-inactive {
             color: #6B7280;
