@@ -1,10 +1,10 @@
-  body {
+body {
             font-family: 'Inter', sans-serif;
         }
         .main-container-shadow {
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.06);
         }
-        .result-card, .detective-card, #explanation-card, #quiz-container {
+        .result-card, .detective-card, #explanation-card, #quiz-container, #difficulty-container, #congrats-container, #detective-mode-select, #user-text-container {
             animation: fadeIn 0.5s ease-out;
         }
         @keyframes fadeIn {
@@ -43,6 +43,7 @@
             border-radius: 3px;
             padding: 0 2px;
         }
+        /* This is the style for the REDACTED blocks */
         .detective-card code {
             background-color: #D1D5DB;
             color: #D1D5DB;
@@ -55,6 +56,11 @@
             line-height: 1;
             vertical-align: baseline;
         }
+        /* This is the style for UN-REDACTED words from code blocks */
+        .detective-card .un-redacted {
+             /* We just use default text styles, no special background */
+        }
+
 
         /* Styles for the Explanation box */
         #explanation-card ul {
@@ -68,7 +74,7 @@
             color: #1D4ED8;
             font-weight: 600;
          }
-         #explanation-card code {
+         #explanation-card code { /* Style for signal words in TD explanation */
              background-color: #E5E7EB;
              color: #DC2626;
              font-weight: 500;
@@ -133,4 +139,37 @@
         .result-false {
             color: #991B1B;
             font-weight: bold;
+        }
+
+        /* Style for Key Themes list */
+        #key-themes-list ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+        #key-themes-list li {
+             margin-bottom: 0.5rem;
+        }
+        /* Style for displaying evidence quote */
+        .evidence-quote {
+            background-color: #f3f4f6; /* gray-100 */
+            border-left: 4px solid #3b82f6; /* blue-500 */
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-style: italic;
+            color: #4b5563; /* gray-600 */
+        }
+        /* Style for highlighted text references in explanations */
+        .result-card .text-gray-700 code {
+             background-color: #293bc6; /* amber-100 */
+             /* Removed font-weight, font-family, font-size */
+             /* Removed color to inherit from parent */
+             padding: 1px 3px;
+             border-radius: 3px;
+             color: #ffffff;
+        }
+        
+        /* Style for selected user difficulty button */
+        .user-difficulty-btn.selected {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* ring-blue-500 */
+            transform: scale(1.05);
         }

@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body class="bg-gradient-to-br from-blue-200 via-white to-blue-50 min-h-screen">
     <div class="container mx-auto px-4 py-8 md:py-12 max-w-5xl">
@@ -40,6 +41,8 @@
                                 <select id="task-select" class="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-100 text-gray-800">
                                     <option value="mainIdea">Find Main Idea</option>
                                     <option value="summary">Summarize Text</option>
+                                    <option value="keyThemes">Identify Key Themes</option>
+                                    <option value="readabilityScore">Readability Score</option>
                                     <option value="inference">Make an Inference</option>
                                     <option value="trueFalse">True or False?</option>
                                     <option value="tone">Find the Tone</option>
@@ -50,6 +53,23 @@
                                 </select>
 
                                 <div id="conditional-inputs-container" class="space-y-4">
+                                    <div id="summary-length-container" class="hidden conditional-input space-y-2">
+                                        <label class="block text-sm font-medium text-gray-600">Summary Length:</label>
+                                        <div class="flex flex-col space-y-1 sm:space-y-0 sm:flex-row sm:space-x-4">
+                                            <div class="flex items-center">
+                                                <input id="summary-short" name="summaryLength" type="radio" value="short" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300" checked>
+                                                <label for="summary-short" class="ml-2 block text-sm text-gray-700">Short (1 sent.)</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input id="summary-medium" name="summaryLength" type="radio" value="medium" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                                <label for="summary-medium" class="ml-2 block text-sm text-gray-700">Medium (~3 sent.)</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input id="summary-detailed" name="summaryLength" type="radio" value="detailed" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300">
+                                                <label for="summary-detailed" class="ml-2 block text-sm text-gray-700">Detailed (~5 sent.)</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div id="word-input-container" class="hidden conditional-input">
                                         <label for="word-input" class="block text-sm font-medium text-gray-600 mb-1">Word to explain (Optional):</label>
                                         <input type="text" id="word-input" class="w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800 placeholder-gray-500" placeholder="Leave blank to find key vocabulary...">
@@ -62,12 +82,17 @@
                                         <label for="statement-input" class="block text-sm font-medium text-gray-600 mb-1">Statement to check:</label>
                                         <textarea id="statement-input" rows="3" class="w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800 placeholder-gray-500" placeholder="Enter the statement you want to verify..."></textarea>
                                     </div>
+                                    <div id="paragraph-input-container" class="hidden conditional-input">
+                                        <label for="paragraph-input" class="block text-sm font-medium text-gray-600 mb-1">Paragraph to analyze (Optional):</label>
+                                        <textarea id="paragraph-input" rows="4" class="w-full p-2 border border-blue-300 rounded-lg bg-blue-100 text-gray-800 placeholder-gray-500" placeholder="Paste a paragraph here to find its specific purpose..."></textarea>
+                                    </div>
                                 </div>
 
                                 <button id="analyze-btn" class="w-full bg-blue-600 text-white font-semibold py-3 px-5 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:bg-blue-800 disabled:cursor-not-allowed">
                                     Analyze Text
                                 </button>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,62 +102,134 @@
         </div>
 
 
+        <!-- Container for the entire Text Detective Feature -->
         <div id="detective-container" class="hidden">
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
-                <button id="attempt-btn" class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-all hidden">
-                    I'm Ready to Check
-                </button>
-                <button id="reveal-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-all hidden">
-                    Show Full Text
-                </button>
-                <div class="flex space-x-2 p-1 bg-blue-100/50 rounded-lg">
-                    <select id="example-select" class="w-full sm:w-auto py-2 px-4 rounded-md text-sm font-medium bg-blue-100 text-blue-700 border-blue-300 focus:ring-blue-500 focus:border-blue-500">
-                        <option value="0">Ex 1: Renewable Energy</option>
-                        <option value="1">Ex 2: Urban Planning</option>
-                        <option value="2">Ex 3: Ancient Civilizations</option>
-                        <option value="3">Ex 4: Nutrition Science</option>
-                        <option value="4">Ex 5: Global Trade</option>
-                        <option value="5">Ex 6: Film Theory</option>
-                        <option value="6">Ex 7: Music History</option>
-                        <option value="7">Ex 8: Cognitive Bias</option>
-                        <option value="8">Ex 9: Astrophysics</option>
-                        <option value="9">Ex 10: Digital Privacy</option>
-                    </select>
+
+            <!-- 0. Mode Selection -->
+            <div id="detective-mode-select" class="text-center bg-white/70 backdrop-blur-sm p-8 rounded-2xl main-container-shadow border border-blue-200">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800">Choose Your Mode</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <button id="mode-guided-btn" class="p-6 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        <h3 class="text-xl mb-2">Guided Practice</h3>
+                        <p class="font-normal text-blue-100">Follow our sequential challenges with quizzes.</p>
+                    </button>
+                    <button id="mode-user-text-btn" class="p-6 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                        <h3 class="text-xl mb-2">Your Own Text</h3>
+                        <p class="font-normal text-green-100">Paste your own text to create a practice exercise.</p>
+                    </button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                <div class="detective-card bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
-                    <h2 class="text-2xl font-semibold mb-4 text-blue-700 border-b border-blue-300 pb-2">Text A</h2>
-                    <p id="text-a-content" class="leading-relaxed text-lg text-gray-800"></p>
+            <!-- 1. Difficulty Selection Screen (for Guided Practice) -->
+            <div id="difficulty-container" class="hidden text-center bg-white/70 backdrop-blur-sm p-8 rounded-2xl main-container-shadow border border-blue-200">
+                <h2 class="text-2xl font-semibold mb-6 text-gray-800">Guided Practice: Choose Difficulty</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <button class="difficulty-btn p-6 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-green-500 hover:bg-green-600" data-difficulty="beginner">Beginner</button>
+                    <button class="difficulty-btn p-6 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-blue-500 hover:bg-blue-600" data-difficulty="moderate">Moderate</button>
+                    <button class="difficulty-btn p-6 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-yellow-500 hover:bg-yellow-600" data-difficulty="advanced">Advanced</button>
+                    <button class="difficulty-btn p-6 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-red-600 hover:bg-red-700" data-difficulty="expert">Expert</button>
                 </div>
-                <div class="detective-card bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
-                    <h2 class="text-2xl font-semibold mb-4 text-red-600 border-b border-blue-300 pb-2">Text B</h2>
-                    <p id="text-b-content" class="leading-relaxed text-lg text-gray-800"></p>
+                 <button id="guided-back-btn" class="mt-8 text-sm text-blue-600 hover:underline">&larr; Back to Mode Select</button>
+            </div>
+
+            <!-- 2. Main Detective Content (for Guided Practice) -->
+            <div id="detective-content" class="hidden">
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                    <button id="reveal-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-all hidden">
+                        Show Full Text
+                    </button>
+                    <button id="next-challenge-btn" class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition-all hidden">
+                        Next Challenge
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <div class="detective-card bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
+                        <h2 class="text-2xl font-semibold mb-4 text-blue-700 border-b border-blue-300 pb-2">Text A</h2>
+                        <p id="text-a-content" class="leading-relaxed text-lg text-gray-800"></p>
+                    </div>
+                    <div class="detective-card bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
+                        <h2 class="text-2xl font-semibold mb-4 text-red-600 border-b border-blue-300 pb-2">Text B</h2>
+                        <p id="text-b-content" class="leading-relaxed text-lg text-gray-800"></p>
+                    </div>
+                </div>
+
+                <div id="quiz-container" class="mt-8 bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-800">Check Your Understanding</h2>
+                    <p id="quiz-question" class="mb-4 font-medium text-gray-700"></p>
+                    <div id="quiz-options" class="space-y-3 mb-4">
+                    </div>
+                    <div id="quiz-feedback" class="hidden"></div>
+                    <button id="submit-quiz-btn" class="w-full mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition-all disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        Submit Answer
+                    </button>
+                </div>
+
+                <div id="explanation-container" class="hidden mt-8">
+                    <div id="explanation-card" class="bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
+                        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b border-blue-300 pb-2">How to Find the Meaning</h2>
+                        <div id="explanation-content" class="text-gray-700 leading-relaxed space-y-4">
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div id="quiz-container" class="mt-8 bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
-                <h2 class="text-xl font-semibold mb-4 text-gray-800">Check Your Understanding</h2>
-                <p id="quiz-question" class="mb-4 font-medium text-gray-700"></p>
-                <div id="quiz-options" class="space-y-3 mb-4">
-                </div>
-                 <div id="quiz-feedback" class="hidden"></div>
-                <button id="submit-quiz-btn" class="w-full mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition-all disabled:bg-gray-400 disabled:cursor-not-allowed">
-                    Submit Answer
+            <!-- 3. Congratulations Screen (for Guided Practice) -->
+            <div id="congrats-container" class="hidden text-center bg-white/70 backdrop-blur-sm p-8 rounded-2xl main-container-shadow border border-blue-200">
+                <h2 class="text-2xl font-semibold mb-4 text-green-700">Congratulations!</h2>
+                <p class="text-lg text-gray-700 mb-6">You have completed all the Guided Practice challenges.</p>
+                <button id="restart-detective-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                    Practice Again
                 </button>
+                 <button id="guided-done-back-btn" class="mt-4 w-full sm:w-auto text-sm text-blue-600 hover:underline">Back to Mode Select</button>
             </div>
 
-            <div id="explanation-container" class="hidden mt-8">
-                 <div id="explanation-card" class="bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200">
-                     <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b border-blue-300 pb-2">How to Find the Meaning</h2>
-                     <div id="explanation-content" class="text-gray-700 leading-relaxed space-y-4">
-                     </div>
-                 </div>
+            <!-- 4. User Text Input Mode -->
+            <div id="user-text-container" class="hidden bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-2xl main-container-shadow border border-blue-200">
+                <div class="flex justify-between items-center mb-4">
+                     <h2 class="text-2xl font-semibold text-gray-800">Practice With Your Text</h2>
+                     <button id="user-text-back-btn" class="text-sm text-blue-600 hover:underline">&larr; Back to Mode Select</button>
+                </div>
+               
+                <!-- Step 1: Input -->
+                <div id="user-text-input-step">
+                    <label for="user-text-input" class="block text-lg font-semibold text-gray-800 mb-3">Paste your text here (min. 50 words):</label>
+                    <textarea id="user-text-input" rows="15" class="w-full p-4 border border-blue-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 bg-blue-50/50 placeholder-gray-500" placeholder="Paste your article or story here..."></textarea>
+                    
+                    <label class="block text-lg font-semibold text-gray-800 mt-6 mb-3">Choose Redaction Level:</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <button class="user-difficulty-btn p-4 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-green-500 hover:bg-green-600" data-difficulty="beginner">Low (25%)</button>
+                        <button class="user-difficulty-btn p-4 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-blue-500 hover:bg-blue-600" data-difficulty="moderate">Medium (50%)</button>
+                        <button class="user-difficulty-btn p-4 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-yellow-500 hover:bg-yellow-600" data-difficulty="advanced">Advanced (75%)</button>
+                        <button class="user-difficulty-btn p-4 rounded-lg font-semibold text-white transition-transform transform hover:scale-105 bg-red-600 hover:bg-red-700" data-difficulty="expert">Expert (90%)</button>
+                    </div>
+                    <button id="redact-user-text-btn" class="w-full bg-blue-600 text-white font-semibold py-3 px-5 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-transform duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        Redact Text
+                    </button>
+                    <p id="user-text-error" class="text-red-600 text-sm mt-2 text-center h-4"></p>
+                </div>
+
+                <!-- Step 2: Result -->
+                <div id="user-text-result-step" class="hidden">
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                        <button id="user-text-reveal-btn" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-all">
+                            Show Full Text
+                        </button>
+                    </div>
+                    <div class="detective-card bg-white/70 backdrop-blur-sm p-6 rounded-2xl main-container-shadow border border-blue-200 max-h-96 overflow-y-auto">
+                        <h2 class="text-2xl font-semibold mb-4 text-blue-700 border-b border-blue-300 pb-2">Your Redacted Text</h2>
+                        <p id="user-text-redacted-content" class="leading-relaxed text-lg text-gray-800"></p>
+                    </div>
+                    <button id="user-text-start-over-btn" class="w-full sm:w-auto mt-6 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition-all">
+                        Practice with New Text
+                    </button>
+                </div>
             </div>
+
         </div>
     </div>
-<script src="script.js"></script>
-</body>
-</html>
+    <script src="script.js"></script>
+    </body>
+    </html>
+
 
